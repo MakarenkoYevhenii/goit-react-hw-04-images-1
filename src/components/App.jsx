@@ -5,7 +5,7 @@ import { searchPosts } from '../shared/services/posts';
 import Button from '../components/Button/Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
-
+import style from './ImageGalleryItem/ImageGalleryItem.module.css'
 const ImagesSearch = () => {
   const [data, setData] = useState({
     posts: [],
@@ -72,7 +72,9 @@ const ImagesSearch = () => {
 
   const showModal = post => {
     setModal({
-      modalContent: post,
+      modalContent: {
+        post,
+      },
       modalOpen: true,
     });
   };
@@ -90,7 +92,8 @@ const ImagesSearch = () => {
       {data.loading && <Loader />}
       {Boolean(data.posts.length) && <Button onclick={loadMore} />}
       {modal.modalOpen && (
-        <Modal image={modal.modalContent} handleClose={modalClose} />)}
+        <Modal  handleClose={modalClose} >
+          <img src={modal.modalContent.post.largeImageURL} alt={modal.modalContent.post.alt} className={style.img} /></Modal>)}
     </div>
   );
 };
