@@ -1,5 +1,5 @@
 import styles from '../Button/Button.module.css'
-
+import {memo} from "react"
 const btnLoadMore = ({onclick}) => {
     return (
       <div className={styles.btnArea}>
@@ -8,4 +8,4 @@ const btnLoadMore = ({onclick}) => {
     );
   }
   
-  export default btnLoadMore
+  export default memo(btnLoadMore)
