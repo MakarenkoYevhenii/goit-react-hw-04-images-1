@@ -28,14 +28,14 @@ const ImagesSearch = () => {
     }
   };
   
-  const onSubmit = e => {
+  const onSubmit = useCallback(e => {
     setData({
       posts:[]
     })
     setSearch({
       search: e.query,
     });
-  };
+  });
   const loadMore = () => {
     setPage(prevState => prevState+1);
   };
@@ -70,14 +70,14 @@ const ImagesSearch = () => {
   }},[search,page])
 
 
-  const showModal = post => {
+  const showModal =useCallback(post => {
     setModal({
       modalContent: {
         post,
       },
       modalOpen: true,
     });
-  };
+  });
   const modalClose = () => {
     setModal({
       modalContent: null,

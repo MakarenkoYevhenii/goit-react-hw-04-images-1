@@ -1,6 +1,6 @@
 import styles from '../ImageGalleryItem/ImageGalleryItem.module.css'
 import PropTypes from 'prop-types';
-
+import { memo } from 'react';
 
 const imageGalleryItem = ({picture,handleClick}) => {
   return (
@@ -10,7 +10,7 @@ const imageGalleryItem = ({picture,handleClick}) => {
   );
 }
 
-export default imageGalleryItem
+export default memo(imageGalleryItem)
 
 imageGalleryItem.propTypes={
   picture:PropTypes.shape({
