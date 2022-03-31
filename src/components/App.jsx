@@ -17,17 +17,7 @@ const ImagesSearch = () => {
   const [page, setPage] = useState(1);
   const [modal, setModal] = useState({ modalOpen: false, modalContent: '' });
   
-  const componentDidUpdate = (prevProps, prevState) => {
-    const { search } = search;
-    const {  page } = page;
-    
-    if (search !== prevState.search || page !== prevState.page) {
-      setData({
-        loading: true,
-      });
-    }
-  };
-  
+ 
   const onSubmit = useCallback(e => {
     setData({
       posts:[]
@@ -44,7 +34,6 @@ const ImagesSearch = () => {
     const fetchPosts = async() => {
       try {
         const data = await searchPosts(page,search.search);
-        console.log(page);
         setData(prevState => {
           return {
             posts: [...prevState.posts, ...data.hits],
@@ -88,7 +77,7 @@ const ImagesSearch = () => {
   return (
     <div>
       <Searchbar onSubmit={onSubmit} />
-      <ImageGallery images={data.posts} handleClick={showModal} />
+      {!data.posts.length?"Sorry Not Found":<ImageGallery images={data.posts} handleClick={showModal} />}
       {data.loading && <Loader />}
       {Boolean(data.posts.length) && <Button onclick={loadMore} />}
       {modal.modalOpen && (
